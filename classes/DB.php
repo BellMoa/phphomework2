@@ -25,7 +25,7 @@ class DB
         return mysqli_connect($this->host,$this->login,$this->password,$this->dataBase);
     }
 
-    public function getAll($sql){
+    public function query($sql,$class='stdClass'){
         $resource = $this->connectToDB();
         mysqli_set_charset($resource,'UTF-8');
         $result = mysqli_query($resource,$sql);
@@ -36,7 +36,7 @@ class DB
             return false;
         }
 
-        while ($row = mysqli_fetch_object($result)){
+        while ($row = mysqli_fetch_object($result, $class)){
             $tmp[]=$row;
         }
         return $tmp;
