@@ -1,7 +1,8 @@
 <?php
 
-require_once __DIR__. '/classes/DB.php';
 
-$test = new DB();
-$items = $test->getAll('SELECT * FROM news');
-var_dump($items);
+require_once __DIR__. '/model/News.php';
+
+$items = News::getAll();
+
+include __DIR__ . '/view/index.php';
